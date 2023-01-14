@@ -18,9 +18,10 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String PHONE_COL = "phone";
 
 
-    public DBHandler(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+    public DBHandler(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {

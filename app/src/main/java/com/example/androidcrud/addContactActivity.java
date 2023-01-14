@@ -9,8 +9,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class addContactActivity extends AppCompatActivity {
-    EditText contactName, contactPhone;
-    Button addNew;
+    private EditText contactName, contactPhone;
+    private Button addNew;
+    private DBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,15 +22,24 @@ public class addContactActivity extends AppCompatActivity {
         contactPhone = findViewById(R.id.editTextPhone);
 
         addNew = findViewById(R.id.addContactSubmitBtn);
-    }
 
-    public void addNewContact(View view) {
-        String name  = contactName.toString().trim();
-        String number = contactPhone.toString().trim();
+        dbHandler = new DBHandler(addContactActivity.this);
 
-        if (name == null && number == null)
-            Toast.makeText(this, "One or more fields are empty", Toast.LENGTH_SHORT).show();
-        else
-           Toast.makeText(this, "Contact Added!!", Toast.LENGTH_SHORT).show();
+        addNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String conName = contactName.getText().toString();
+                String conNumber = String.valueOf(Integer.parseInt(contactPhone.getText().toString().trim()));
+
+                if (conName == null && conNumber == null) {
+                    Toast.makeText(addContactActivity.this, "Empty fields", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                dbHandler.addNewContact(conName, conNumber);
+                Toast.makeText(addContactActivity.this, "Contact added", Toast.LENGTH_SHORT).show();
+                contactName.setText("");
+                contactPhone.setText("");
+            }
+        });
     }
 }
