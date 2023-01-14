@@ -24,8 +24,8 @@ public class addContactActivity extends AppCompatActivity {
     }
 
     public void addNewContact(View view) {
-        String name  = contactName.toString();
-        String number = contactPhone.toString();
+        String name  = contactName.toString().trim();
+        String number = contactPhone.toString().trim();
 
         if (name == null && number == null)
             Toast.makeText(this, "One or more fields are empty", Toast.LENGTH_SHORT).show();
