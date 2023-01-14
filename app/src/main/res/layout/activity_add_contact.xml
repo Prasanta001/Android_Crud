@@ -6,4 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".addContactActivity">
 
+    <EditText
+        android:id="@+id/contactNameAdd"
+        android:layout_width="356dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="48dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_width="356dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="52dp"
+        android:ems="10"
+        android:hint="Phone No."
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contactNameAdd" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="ADD NEW CONTACT:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.297"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/addContactSubmitBtn"
+        android:layout_width="238dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="60dp"
+        android:onClick="addNewContact"
+        android:text="Submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
 </androidx.constraintlayout.widget.ConstraintLayout>

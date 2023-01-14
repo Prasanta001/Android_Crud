@@ -20,4 +20,8 @@ public class MainActivity extends AppCompatActivity {
         viewContact = findViewById(R.id.viewContactBtn);
     }
 
+    public void newContactIntent(View view) {
+        Intent i = new Intent(MainActivity.this, addContactActivity.class);
+        startActivity(i);
+    }
 }
