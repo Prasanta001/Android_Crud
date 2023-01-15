@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class addContactActivity extends AppCompatActivity {
     private EditText contactName, contactPhone;
-    private Button addNew;
+    Button addNew;
     private DBHandler dbHandler;
 
     @Override
@@ -25,21 +25,20 @@ public class addContactActivity extends AppCompatActivity {
 
         dbHandler = new DBHandler(addContactActivity.this);
 
-        addNew.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String conName = contactName.getText().toString();
-                String conNumber = String.valueOf(Integer.parseInt(contactPhone.getText().toString().trim()));
+        addNew.setOnClickListener(v -> {
+            String conName = contactName.getText().toString();
+            String conNumber = contactPhone.getText().toString().trim();
 
-                if (conName == null && conNumber == null) {
-                    Toast.makeText(addContactActivity.this, "Empty fields", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+            if (conName.isEmpty() || conNumber.isEmpty()){
+                Toast.makeText(this, "One or more empty fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            else {
                 dbHandler.addNewContact(conName, conNumber);
                 Toast.makeText(addContactActivity.this, "Contact added", Toast.LENGTH_SHORT).show();
-                contactName.setText("");
-                contactPhone.setText("");
             }
+            contactName.setText("");
+            contactPhone.setText("");
         });
     }
 }
