@@ -2,10 +2,13 @@ package com.example.androidcrud;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
 
 public class DBHandler extends SQLiteOpenHelper {
 
@@ -45,6 +48,22 @@ public class DBHandler extends SQLiteOpenHelper {
         db.insert(TABLE_NAME, null, contentValues);
 
         db.close();
+    }
+
+    public ArrayList<ContactModal> readContact(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursorContacts = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+
+        ArrayList<ContactModal> contactModalArrayList = new ArrayList<>();
+
+        if (cursorContacts.moveToFirst()){
+            do {
+                contactModalArrayList.add(new ContactModal(cursorContacts.getString(1), cursorContacts.getString(2)));
+            } while (cursorContacts.moveToNext());
+        }
+        cursorContacts.close();
+        return contactModalArrayList;
     }
 
     @Override

@@ -24,4 +24,9 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(MainActivity.this, addContactActivity.class);
         startActivity(i);
     }
+
+    public void viewContactsIntent (View view){
+        Intent i = new Intent(MainActivity.this, viewContactsActivity.class);
+        startActivity(i);
+    }
 }
